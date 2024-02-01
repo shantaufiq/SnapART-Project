@@ -16,7 +16,6 @@ public class ScreenshotHandler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        // myCamera = gameObject.GetComponent<Camera>();
     }
 
     private void OnPostRender()
@@ -55,16 +54,18 @@ public class ScreenshotHandler : MonoBehaviour
     {
         for (int i = 0; i < targetImageComponents.Count; i++)
         {
-            if (i < imgResult.Count && targetImageComponents[i] != null)
+            int secondPlacementIndex = i + 3;
+
+            if (targetImageComponents[i] != null && targetImageComponents.Count > secondPlacementIndex && targetImageComponents[secondPlacementIndex] != null)
             {
-                Texture2D texture = imgResult[i];
                 Sprite newSprite = Sprite.Create(
-                    texture,
-                    new Rect(0.0f, 0.0f, texture.width, texture.height),
+                    imgResult[i],
+                    new Rect(0.0f, 0.0f, imgResult[i].width, imgResult[i].height),
                     new Vector2(0.5f, 0.5f),
                     100.0f);
 
                 targetImageComponents[i].sprite = newSprite;
+                targetImageComponents[secondPlacementIndex].sprite = newSprite;
             }
         }
     }

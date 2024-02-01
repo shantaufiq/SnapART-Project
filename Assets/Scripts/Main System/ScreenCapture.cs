@@ -67,10 +67,21 @@ public class ScreenCapture : MonoBehaviour
     IEnumerator StartCapturedImages()
     {
         yield return new WaitForEndOfFrame();
-        Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
 
-        screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        RectTransform rt = CapturePanel.GetComponent<RectTransform>();
+
+        float width = rt.rect.width;
+        float height = rt.rect.height;
+
+        float x = (Screen.width / 2f) - (width / 2f);
+        float y = (Screen.height / 2f) - (height / 2f);
+
+        Texture2D screenImage = new Texture2D((int)width, (int)height);
+
+        screenImage.ReadPixels(new Rect(x, y, width, height), 0, 0);
         screenImage.Apply();
+
+        Debug.Log("Width: " + width + ", Height: " + height + ", X: " + x + ", Y: " + y);
 
         string tempPath = Path.GetTempPath();
         string fullPath = $"{tempPath}/Customer_{FileName}_{captureCount}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
@@ -94,18 +105,20 @@ public class ScreenCapture : MonoBehaviour
         {
             panelSelectFrame.SetActive(true);
 
-            for (int i = 0; i < imagePlacements.Count; i++)
+            for (int i = 0; i < capturedImages.Count; i++)
             {
-                if (i < capturedImages.Count && imagePlacements[i] != null)
+                int secondPlacementIndex = i + 3;
+
+                if (imagePlacements[i] != null && imagePlacements.Count > secondPlacementIndex && imagePlacements[secondPlacementIndex] != null)
                 {
-                    Texture2D texture = capturedImages[i];
                     Sprite newSprite = Sprite.Create(
-                        texture,
-                        new Rect(0.0f, 0.0f, texture.width, texture.height),
+                        capturedImages[i],
+                        new Rect(0.0f, 0.0f, capturedImages[i].width, capturedImages[i].height),
                         new Vector2(0.5f, 0.5f),
                         100.0f);
 
                     imagePlacements[i].sprite = newSprite;
+                    imagePlacements[secondPlacementIndex].sprite = newSprite;
                 }
             }
 
@@ -115,67 +128,5 @@ public class ScreenCapture : MonoBehaviour
         {
             UICaptureComponents.SetActive(true);
         }
-
-        // Debug.Log("All images saved to temporary folder: " + fullPath);
-    }
-
-    public void SaveImage()
-    {
-        Debug.Log("click Screenshot");
-        StartCoroutine(SaveFinalImage());
-    }
-
-    IEnumerator SaveFinalImage()
-    {
-        Debug.Log("you has been captured");
-
-        yield return new WaitForEndOfFrame();
-
-        Sprite sprite = finalImage.sprite;
-        Texture2D texture = SpriteToTexture2D(sprite);
-
-        // Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
-
-        // screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        // screenImage.Apply();
-
-        // Pastikan SavePath diakhiri dengan "\"
-        if (!SavePath.EndsWith(@"\")) SavePath += @"\";
-
-        // Periksa apakah directory tersebut ada, jika tidak, buat
-        if (!Directory.Exists(SavePath))
-        {
-            Directory.CreateDirectory(SavePath);
-        }
-
-        // string Path = $"{Application.persistentDataPath}/Customer_{FileName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
-        string Path = $"{SavePath}/Customer_{FileName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
-        Debug.Log(Path);
-        byte[] imageBytes = texture.EncodeToJPG();
-
-        File.WriteAllBytes(Path, imageBytes);
-
-        Destroy(texture);
-
-        yield return new WaitForSeconds(0.5f);
-
-        CapturePanel.SetActive(true);
-    }
-
-    Texture2D SpriteToTexture2D(Sprite sprite)
-    {
-        if (sprite.rect.width != sprite.texture.width)
-        {
-            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
-                                                        (int)sprite.textureRect.y,
-                                                        (int)sprite.textureRect.width,
-                                                        (int)sprite.textureRect.height);
-            newText.SetPixels(newColors);
-            newText.Apply();
-            return newText;
-        }
-        else
-            return sprite.texture;
     }
 }
