@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        OnOffCamera_Clicked();
+        // OnOffCamera_Clicked();
     }
 
     public void SwitchCamera_Clicked()
