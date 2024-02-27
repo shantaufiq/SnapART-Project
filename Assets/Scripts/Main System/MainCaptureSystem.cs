@@ -18,7 +18,7 @@ public class MainCaptureSystem : MonoBehaviour
     [Header("Frame Section")]
     public int frameIndex = 0;
     public List<Sprite> framePreviewSource;
-    public List<Sprite> FrameResultSource;
+    public List<Image> frameSelectionPreview;
     public List<Image> framePreviewTarget;
 
     [Space]
@@ -51,7 +51,15 @@ public class MainCaptureSystem : MonoBehaviour
     }
 
     #region Frame-Selection 
-    public void SetFrameIndex(int index) => frameIndex = index; // called from button frame selection
+    public void SetFrameIndex(int index)
+    {
+        frameIndex = index;
+
+        foreach (var item in frameSelectionPreview)
+        {
+            item.sprite = framePreviewSource[frameIndex];
+        }
+    }
     #endregion
 
     #region Video-Selection
@@ -155,7 +163,7 @@ public class MainCaptureSystem : MonoBehaviour
                 }
             }
 
-            PrintHandler.Instance.SetFoto(capturedImages, FrameResultSource[frameIndex]);
+            PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
         }
         else
         {
