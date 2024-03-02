@@ -25,7 +25,6 @@ public class MainCaptureSystem : MonoBehaviour
     [Header("AR Selection")]
     public int videoIndex = 0;
     public VideoPlayer videoPlayer;
-    public List<VideoClip> ARClip;
 
     [Space]
     [Header("Main Components")]
@@ -63,7 +62,10 @@ public class MainCaptureSystem : MonoBehaviour
     #endregion
 
     #region Video-Selection
-    public void SetVideoIndex(int index) => videoIndex = index;
+    public void SetVideoClip(VideoClip clip)
+    {
+
+    }
     #endregion
 
     public void OnClickScreenShoot()
