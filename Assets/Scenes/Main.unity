@@ -1655,10 +1655,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.60211, y: -524.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225835891
 MonoBehaviour:
@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46eb891675d5a6f41b3382aee8bac36f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1862,10 +1862,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 427.6021, y: -329.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288455385
 MonoBehaviour:
@@ -1911,7 +1911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -1943,7 +1943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7958905bffbb2d0449977e94a65bc94f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3959,10 +3959,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 427.6021, y: -719.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668998164
 MonoBehaviour:
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -4040,7 +4040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e73d0fbfb348d3f498d7d1fc3c1842f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6384,7 +6384,6 @@ GameObject:
   - component: {fileID: 1057015915}
   - component: {fileID: 1057015914}
   - component: {fileID: 1057015913}
-  - component: {fileID: 1057015916}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -6480,26 +6479,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057015911}
   m_CullTransparentMesh: 1
---- !u!114 &1057015916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057015911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f19e4227541ec40b2c96e709ced685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 1057015913}
-  videoClips:
-  - {fileID: 32900000, guid: ee3babf5dee7b1545beee4ff81ce5008, type: 3}
-  - {fileID: 32900000, guid: b5f68fb612679124bbaaddaf3ad1b32d, type: 3}
-  - {fileID: 32900000, guid: 43cd1efc02f75794f8856e2c329cc7f6, type: 3}
-  - {fileID: 32900000, guid: 4dc1a227347caec41a7c300ad19f2d91, type: 3}
-  - {fileID: 32900000, guid: accbebcfc29b95940bb18334b63a99f0, type: 3}
-  - {fileID: 32900000, guid: 09b1893da211a6c48bd407f1e99e3647, type: 3}
 --- !u!1 &1062339467
 GameObject:
   m_ObjectHideFlags: 0
@@ -10161,6 +10140,61 @@ RectTransform:
   m_AnchoredPosition: {x: -47.03528, y: 0}
   m_SizeDelta: {x: 88.4984, y: 281.436}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1786846111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786846113}
+  - component: {fileID: 1786846112}
+  m_Layer: 0
+  m_Name: Preview Video Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786846112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786846111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f19e4227541ec40b2c96e709ced685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 1057015913}
+  videoClips:
+  - {fileID: 32900000, guid: ee3babf5dee7b1545beee4ff81ce5008, type: 3}
+  - {fileID: 32900000, guid: b5f68fb612679124bbaaddaf3ad1b32d, type: 3}
+  - {fileID: 32900000, guid: 43cd1efc02f75794f8856e2c329cc7f6, type: 3}
+  - {fileID: 32900000, guid: 4dc1a227347caec41a7c300ad19f2d91, type: 3}
+  - {fileID: 32900000, guid: accbebcfc29b95940bb18334b63a99f0, type: 3}
+  - {fileID: 32900000, guid: 09b1893da211a6c48bd407f1e99e3647, type: 3}
+  ARSelectionPanel: {fileID: 485934007}
+  CapturePanel: {fileID: 170515300}
+  mainCaptureSystem: {fileID: 182086598}
+--- !u!4 &1786846113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786846111}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.5932617, y: -6.5651054, z: 144.5237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1790800130
 GameObject:
   m_ObjectHideFlags: 0
@@ -10637,10 +10671,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.60211, y: -719.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869429010
 MonoBehaviour:
@@ -10686,7 +10720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -10718,7 +10752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: edc21e3da80db8749b09937dfbbf6df4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11498,10 +11532,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 427.6021, y: -524.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014358692
 MonoBehaviour:
@@ -11547,7 +11581,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -11579,7 +11613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3f47f6cf356ba0b49a4c1c73a4b4f35e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12859,7 +12893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1126058901385859807
 GameObject:
   m_ObjectHideFlags: 0
@@ -13498,7 +13532,7 @@ RectTransform:
   m_Father: {fileID: 3009900618803699912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5.8884, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13787,18 +13821,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 170515300}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1938436945}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnOffCamera_Clicked
@@ -13811,17 +13833,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 485934007}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1786846112}
+        m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
+        m_MethodName: OnClickVideoReady
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2271506462812796253
 MonoBehaviour:
@@ -15149,10 +15171,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1190642732900808947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.60211, y: -329.185}
+  m_SizeDelta: {x: 250, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4548934825543108681
 MonoBehaviour:
@@ -17340,7 +17362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 33c24de0b73c56a4dbd28ce5f8486a66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17394,7 +17416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1057015916}
+      - m_Target: {fileID: 1786846112}
         m_TargetAssemblyTypeName: PreviewVideoController, Assembly-CSharp
         m_MethodName: ChangeVideoClip
         m_Mode: 3
@@ -18456,5 +18478,6 @@ SceneRoots:
   - {fileID: 170515304}
   - {fileID: 1938436946}
   - {fileID: 182086597}
+  - {fileID: 1786846113}
   - {fileID: 368940817}
   - {fileID: 1804575867}

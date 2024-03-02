@@ -7,6 +7,12 @@ public class PreviewVideoController : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public VideoClip[] videoClips;
+    private int videoIndex;
+    public GameObject ARSelectionPanel;
+
+    [Header("Capture Section")]
+    public GameObject CapturePanel;
+    public MainCaptureSystem mainCaptureSystem;
 
     public void ChangeVideoClip(int clipIndex)
     {
@@ -24,10 +30,14 @@ public class PreviewVideoController : MonoBehaviour
 
         videoPlayer.clip = videoClips[clipIndex];
         videoPlayer.Play();
+
+        videoIndex = clipIndex;
     }
 
-    public void OnClickVideoReady(int index)
+    public void OnClickVideoReady()
     {
-
+        CapturePanel.SetActive(true);
+        mainCaptureSystem.SetVideoClip(videoClips[videoIndex]);
+        ARSelectionPanel.SetActive(false);
     }
 }

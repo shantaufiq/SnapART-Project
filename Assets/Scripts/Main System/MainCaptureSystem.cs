@@ -64,7 +64,7 @@ public class MainCaptureSystem : MonoBehaviour
     #region Video-Selection
     public void SetVideoClip(VideoClip clip)
     {
-
+        videoPlayer.clip = clip;
     }
     #endregion
 
