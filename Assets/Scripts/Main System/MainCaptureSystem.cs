@@ -33,6 +33,7 @@ public class MainCaptureSystem : MonoBehaviour
     public GameObject CapturePanel;
     public float countdownTime = 5f;
     public TextMeshProUGUI countdownText;
+    public CameraController camController;
 
     [SerializeField] private List<Texture2D> capturedImages = new List<Texture2D>();
     public List<Image> imagePlacements;
@@ -62,9 +63,14 @@ public class MainCaptureSystem : MonoBehaviour
     #endregion
 
     #region Video-Selection
-    public void SetVideoClip(VideoClip clip)
+    public void SetVideoClip(VideoClip clip = null)
     {
-        videoPlayer.clip = clip;
+        if (clip == null)
+        {
+            videoPlayer.gameObject.SetActive(false);
+            videoPlayer.Stop();
+        }
+        else videoPlayer.clip = clip;
     }
     #endregion
 
@@ -166,6 +172,8 @@ public class MainCaptureSystem : MonoBehaviour
             }
 
             PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
+
+            camController.OnOffCamera_Clicked();
         }
         else
         {

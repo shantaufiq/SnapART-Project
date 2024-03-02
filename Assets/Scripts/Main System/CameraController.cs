@@ -38,6 +38,8 @@ public class CameraController : MonoBehaviour
             StopWebcam();
 
             camConditionText.text = "Start Camera";
+
+            Debug.Log("Start Camera");
         }
         else
         {
@@ -47,6 +49,7 @@ public class CameraController : MonoBehaviour
 
             _tex.Play();
 
+            Debug.Log("Stop Camera");
             camConditionText.text = "Stop Camera";
         }
     }

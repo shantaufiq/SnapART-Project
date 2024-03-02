@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PrintHandler : MonoBehaviour
 {
@@ -39,6 +39,8 @@ public class PrintHandler : MonoBehaviour
 
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

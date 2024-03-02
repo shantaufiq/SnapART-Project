@@ -7,7 +7,7 @@ public class PreviewVideoController : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public VideoClip[] videoClips;
-    private int videoIndex;
+    private int videoIndex = -1;
     public GameObject ARSelectionPanel;
 
     [Header("Capture Section")]
@@ -28,6 +28,8 @@ public class PreviewVideoController : MonoBehaviour
             return;
         }
 
+        videoPlayer.gameObject.SetActive(true);
+
         videoPlayer.clip = videoClips[clipIndex];
         videoPlayer.Play();
 
@@ -37,7 +39,14 @@ public class PreviewVideoController : MonoBehaviour
     public void OnClickVideoReady()
     {
         CapturePanel.SetActive(true);
-        mainCaptureSystem.SetVideoClip(videoClips[videoIndex]);
+
+        if (videoIndex > -1)
+            mainCaptureSystem.SetVideoClip(videoClips[videoIndex]);
+        else
+            mainCaptureSystem.SetVideoClip();
+
         ARSelectionPanel.SetActive(false);
+        videoPlayer.clip = null;
+        videoIndex = -1;
     }
 }

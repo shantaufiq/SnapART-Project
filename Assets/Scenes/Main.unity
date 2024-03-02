@@ -628,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a318f37bd8c83840994c7a43b3ee956, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25d7f51d2a500f149beb3cd1bd150c04, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c73cc5845c95e44195ece8e422e72b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 344043463c160db47aff91d2d0cce8ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1313,10 +1313,10 @@ MonoBehaviour:
   SavePath: M:\OneDrive - Telkom University\Snaptive\Event Tester
   frameIndex: 0
   framePreviewSource:
-  - {fileID: 21300000, guid: 5a318f37bd8c83840994c7a43b3ee956, type: 3}
-  - {fileID: 21300000, guid: 9a46d7ffc80a2df42b66bafa65b0cc9b, type: 3}
-  - {fileID: 21300000, guid: 0cff5ace5e21c454fba105be2cac946d, type: 3}
-  - {fileID: 21300000, guid: 3c73cc5845c95e44195ece8e422e72b8, type: 3}
+  - {fileID: 21300000, guid: 25d7f51d2a500f149beb3cd1bd150c04, type: 3}
+  - {fileID: 21300000, guid: cff858f292641094c9fe63703201c33f, type: 3}
+  - {fileID: 21300000, guid: f0201fd90e09487499963cc6259449ec, type: 3}
+  - {fileID: 21300000, guid: 344043463c160db47aff91d2d0cce8ea, type: 3}
   frameSelectionPreview:
   - {fileID: 940354708}
   - {fileID: 1478840623}
@@ -1330,6 +1330,7 @@ MonoBehaviour:
   CapturePanel: {fileID: 776262331}
   countdownTime: 3
   countdownText: {fileID: 135390676}
+  camController: {fileID: 1938436945}
   capturedImages: []
   imagePlacements:
   - {fileID: 1009359787}
@@ -3723,7 +3724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c73cc5845c95e44195ece8e422e72b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 344043463c160db47aff91d2d0cce8ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4498,7 +4499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0cff5ace5e21c454fba105be2cac946d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0201fd90e09487499963cc6259449ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4866,7 +4867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a318f37bd8c83840994c7a43b3ee956, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25d7f51d2a500f149beb3cd1bd150c04, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6390,7 +6391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1057015912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8138,7 +8139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0cff5ace5e21c454fba105be2cac946d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0201fd90e09487499963cc6259449ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11083,7 +11084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a46d7ffc80a2df42b66bafa65b0cc9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cff858f292641094c9fe63703201c33f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11229,7 +11230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a46d7ffc80a2df42b66bafa65b0cc9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cff858f292641094c9fe63703201c33f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12939,7 +12940,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4877809669269760492}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 43cd1efc02f75794f8856e2c329cc7f6, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
