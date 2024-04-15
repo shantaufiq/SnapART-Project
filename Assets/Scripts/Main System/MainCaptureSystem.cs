@@ -187,6 +187,10 @@ public class MainCaptureSystem : MonoBehaviour
                 {
                     imagePlacements[i].sprite = CreateSpriteFromTexture(capturedImages[i]);
                     imagePlacements[secondPlacementIndex].sprite = CreateSpriteFromTexture(capturedImages[i]);
+
+                    List<Sprite> tempSprites = new();
+                    tempSprites.Add(CreateSpriteFromTexture(capturedImages[i]));
+                    giftController.SetupGift(tempSprites);
                 }
             }
 

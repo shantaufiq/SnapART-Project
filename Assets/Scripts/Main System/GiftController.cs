@@ -6,23 +6,23 @@ using UnityEngine.UI;
 
 public class GiftController : MonoBehaviour
 {
-    public Image displayImage;
+    public List<Image> displayImage;
     public float duration = 1.0f;
 
-    [SerializeField] private Sprite[] images;
+    [SerializeField] private List<Sprite> images;
     private Coroutine imageCycleCoroutine;
 
     void Start()
     {
         // Mulai coroutine untuk mengganti gambar
-        imageCycleCoroutine = StartCoroutine(CycleImages());
+        // imageCycleCoroutine = StartCoroutine(CycleImages());
     }
 
-    public void SetupGift(Sprite[] imgs)
+    public void SetupGift(List<Sprite> imgs)
     {
         foreach (var item in imgs)
         {
-            // images.AddRange(item);
+            images.Add(item);
         }
 
         StartCoroutine(CycleImages());
@@ -33,11 +33,14 @@ public class GiftController : MonoBehaviour
         int index = 0;
         while (true)
         {
-            displayImage.sprite = images[index];
+            foreach (var item in displayImage)
+            {
+                item.sprite = images[index];
+            }
 
             yield return new WaitForSeconds(duration);
 
-            index = (index + 1) % images.Length;
+            index = (index + 1) % images.Count;
         }
     }
 
