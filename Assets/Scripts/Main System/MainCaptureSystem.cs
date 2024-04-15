@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,8 +39,14 @@ public class MainCaptureSystem : MonoBehaviour
     public TextMeshProUGUI countdownText;
     public CameraController camController;
 
-    [SerializeField] private List<Texture2D> capturedImages = new List<Texture2D>();
+    [Space]
+    [Header("Photo Preview")]
+    private List<Texture2D> capturedImages = new();
+    public GameObject prevewPhotoParent;
+    public List<Image> previewImg;
+    public List<Button> retakeButtons;
     public List<Image> imagePlacements;
+    public GiftController giftController;
     private int captureCount = 0;
 
     void Awake()
@@ -87,6 +94,8 @@ public class MainCaptureSystem : MonoBehaviour
 
     IEnumerator CountdownToScreenshoot(float countdownValue)
     {
+        prevewPhotoParent.SetActive(false);
+
         if (countdownText != null)
         {
             UICaptureComponents.SetActive(false);
@@ -141,6 +150,8 @@ public class MainCaptureSystem : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
+        prevewPhotoParent.SetActive(true);
+
         if (captureCount < 3)
         {
             byte[] thisImageBytes = File.ReadAllBytes(fullPath);
@@ -148,6 +159,14 @@ public class MainCaptureSystem : MonoBehaviour
             currentPhoto.LoadImage(thisImageBytes);
 
             capturedImages.Add(currentPhoto);
+            previewImg[captureCount].sprite = CreateSpriteFromTexture(capturedImages[captureCount]);
+
+            for (int i = 0; i < retakeButtons.Count; i++)
+            {
+                if (i == captureCount) retakeButtons[i].gameObject.SetActive(true);
+                else retakeButtons[i].gameObject.SetActive(false);
+            }
+
             captureCount++;
         }
 
@@ -166,14 +185,8 @@ public class MainCaptureSystem : MonoBehaviour
 
                 if (imagePlacements[i] != null && imagePlacements.Count > secondPlacementIndex && imagePlacements[secondPlacementIndex] != null)
                 {
-                    Sprite newSprite = Sprite.Create(
-                        capturedImages[i],
-                        new Rect(0.0f, 0.0f, capturedImages[i].width, capturedImages[i].height),
-                        new Vector2(0.5f, 0.5f),
-                        100.0f);
-
-                    imagePlacements[i].sprite = newSprite;
-                    imagePlacements[secondPlacementIndex].sprite = newSprite;
+                    imagePlacements[i].sprite = CreateSpriteFromTexture(capturedImages[i]);
+                    imagePlacements[secondPlacementIndex].sprite = CreateSpriteFromTexture(capturedImages[i]);
                 }
             }
 
@@ -195,5 +208,62 @@ public class MainCaptureSystem : MonoBehaviour
         onUserStartedPhoto.Invoke();
         customerName = tmpInput.text;
         Debug.Log($"Current customer name: {tmpInput.text}");
+    }
+
+    public void RetakePhoto()
+    {
+        // RemoveItemAtIndex(capturedImages, captureCount);
+
+        // capturedImages.RemoveAt(captureCount);
+
+        Debug.Log("dibawah adalah jumlahnya");
+        Debug.Log(capturedImages.Count);
+
+        for (int i = 0; i < previewImg.Count; i++)
+        {
+            if (previewImg[i] != null)
+            {
+                if (i < capturedImages.Count)
+                {
+                    previewImg[i].sprite = CreateSpriteFromTexture(capturedImages[i]);
+                }
+                else
+                {
+                    previewImg[i].sprite = null;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Image component pada index " + i + " adalah null.");
+            }
+        }
+    }
+
+    public static void RemoveItemAtIndex<T>(List<T> list, int index)
+    {
+        // Check if the index is within the range of the list
+        if (index >= 0 && index < list.Count)
+        {
+            list.RemoveAt(index);
+        }
+        else
+        {
+            Console.WriteLine("Index out of range. No item removed.");
+        }
+    }
+
+    public static Sprite CreateSpriteFromTexture(Texture2D texture)
+    {
+        if (texture == null)
+        {
+            Debug.LogError("Texture is null. Cannot create sprite.");
+            return null;
+        }
+
+        return Sprite.Create(
+            texture,
+            new Rect(0.0f, 0.0f, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f),
+            100.0f);
     }
 }

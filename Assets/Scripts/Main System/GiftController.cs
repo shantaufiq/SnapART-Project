@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,16 @@ public class GiftController : MonoBehaviour
     {
         // Mulai coroutine untuk mengganti gambar
         imageCycleCoroutine = StartCoroutine(CycleImages());
+    }
+
+    public void SetupGift(Sprite[] imgs)
+    {
+        foreach (var item in imgs)
+        {
+            // images.AddRange(item);
+        }
+
+        StartCoroutine(CycleImages());
     }
 
     IEnumerator CycleImages()
