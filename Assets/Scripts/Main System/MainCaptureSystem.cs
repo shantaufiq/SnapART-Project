@@ -5,14 +5,16 @@ using System.IO;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Events;
 
 public class MainCaptureSystem : MonoBehaviour
 {
     public static MainCaptureSystem Instance;
 
     [Header("Profile Data")]
-    public string FileName;
+    public string EventName;
     public string SavePath;
+    public string customerName;
 
     [Space]
     [Header("Frame Section")]
@@ -20,6 +22,7 @@ public class MainCaptureSystem : MonoBehaviour
     public List<Sprite> framePreviewSource;
     public List<Image> frameSelectionPreview;
     public List<Image> framePreviewTarget;
+    public UnityEvent onUserStartedPhoto;
 
     [Space]
     [Header("AR Selection")]
@@ -48,6 +51,9 @@ public class MainCaptureSystem : MonoBehaviour
     {
         if (countdownText != null)
             countdownText.gameObject.SetActive(false);
+
+        EventName = DataStorageSystem.GetEventName();
+        SavePath = DataStorageSystem.GetFolderLocation();
     }
 
     #region Frame-Selection 
@@ -128,7 +134,7 @@ public class MainCaptureSystem : MonoBehaviour
         Debug.Log("Width: " + width + ", Height: " + height + ", X: " + x + ", Y: " + y);
 
         string tempPath = Path.GetTempPath();
-        string fullPath = $"{tempPath}/Customer_{FileName}_{captureCount}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
+        string fullPath = $"{tempPath}/{EventName}_{customerName}_{captureCount}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
         byte[] imageBytes = screenImage.EncodeToJPG();
 
         File.WriteAllBytes(fullPath, imageBytes);
@@ -173,11 +179,21 @@ public class MainCaptureSystem : MonoBehaviour
 
             PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
 
-            camController.OnOffCamera_Clicked();
+            camController.CameraOff();
         }
         else
         {
             UICaptureComponents.SetActive(true);
         }
+    }
+
+    // for set customer name
+    public void SetCustomerName(TMP_InputField tmpInput)
+    {
+        if (string.IsNullOrEmpty(tmpInput.text)) return;
+
+        onUserStartedPhoto.Invoke();
+        customerName = tmpInput.text;
+        Debug.Log($"Current customer name: {tmpInput.text}");
     }
 }

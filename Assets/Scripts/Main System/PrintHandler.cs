@@ -33,7 +33,7 @@ public class PrintHandler : MonoBehaviour
             renderResult.ReadPixels(rect, 0, 0);
 
             byte[] byteArray = renderResult.EncodeToJPG();
-            string path = $"{MainCaptureSystem.Instance.SavePath}/Customer_{MainCaptureSystem.Instance.FileName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
+            string path = $"{MainCaptureSystem.Instance.SavePath}/Customer_{MainCaptureSystem.Instance.EventName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
             File.WriteAllBytes(path, byteArray);
             Debug.Log(path);
 

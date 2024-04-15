@@ -8,11 +8,11 @@ public class PreviewVideoController : MonoBehaviour
     public VideoPlayer videoPlayer;
     public VideoClip[] videoClips;
     private int videoIndex = -1;
-    public GameObject ARSelectionPanel;
+    private GameObject ARSelectionPanel;
 
-    [Header("Capture Section")]
-    public GameObject CapturePanel;
-    public MainCaptureSystem mainCaptureSystem;
+    // [Header("Capture Section")]
+    // public GameObject CapturePanel;
+    // public MainCaptureSystem mainCaptureSystem;
 
     public void ChangeVideoClip(int clipIndex)
     {
@@ -28,22 +28,29 @@ public class PreviewVideoController : MonoBehaviour
             return;
         }
 
-        videoPlayer.gameObject.SetActive(true);
 
         videoPlayer.clip = videoClips[clipIndex];
         videoPlayer.Play();
 
+        videoPlayer.gameObject.SetActive(true);
         videoIndex = clipIndex;
     }
 
+    public void CloseVideoPlayer()
+    {
+        videoPlayer.gameObject.SetActive(false);
+        videoPlayer.Stop();
+    }
+
+    // for choosing AR from another panel
     public void OnClickVideoReady()
     {
-        CapturePanel.SetActive(true);
+        // CapturePanel.SetActive(true);
 
-        if (videoIndex > -1)
-            mainCaptureSystem.SetVideoClip(videoClips[videoIndex]);
-        else
-            mainCaptureSystem.SetVideoClip();
+        // if (videoIndex > -1)
+        //     mainCaptureSystem.SetVideoClip(videoClips[videoIndex]);
+        // else
+        //     mainCaptureSystem.SetVideoClip();
 
         ARSelectionPanel.SetActive(false);
         videoPlayer.clip = null;

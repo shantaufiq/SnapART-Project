@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        // OnOffCamera_Clicked();
+        // Initialize or configure camera settings here if needed
     }
 
     public void SwitchCamera_Clicked()
@@ -22,42 +22,36 @@ public class CameraController : MonoBehaviour
         {
             _currentCamIndex += 1;
             _currentCamIndex %= WebCamTexture.devices.Length;
-        }
 
-        if (_tex != null)
-        {
-            StopWebcam();
-            OnOffCamera_Clicked();
+            PlayerPrefs.SetInt("camIndex", _currentCamIndex);
+
+            if (_tex != null)
+            {
+                CameraOff();
+                CameraOn();
+            }
         }
     }
 
-    public void OnOffCamera_Clicked()
+    public void CameraOn()
+    {
+        WebCamDevice device = WebCamTexture.devices[PlayerPrefs.GetInt("camIndex", _currentCamIndex)];
+        _tex = new WebCamTexture(device.name);
+        display.texture = _tex;
+        _tex.Play();
+        camConditionText.text = "Stop Camera";
+    }
+
+    public void CameraOff()
     {
         if (_tex != null)
         {
-            StopWebcam();
-
+            display.texture = null;
+            _tex.Stop();
+            _tex = null;
             camConditionText.text = "Start Camera";
-
-            Debug.Log("Start Camera");
-        }
-        else
-        {
-            WebCamDevice device = WebCamTexture.devices[_currentCamIndex];
-            _tex = new WebCamTexture(device.name);
-            display.texture = _tex;
-
-            _tex.Play();
-
-            Debug.Log("Stop Camera");
-            camConditionText.text = "Stop Camera";
         }
     }
 
-    private void StopWebcam()
-    {
-        display.texture = null;
-        _tex.Stop();
-        _tex = null;
-    }
+    // The OnOffCamera_Clicked function can be removed or repurposed for other functionality.
 }
