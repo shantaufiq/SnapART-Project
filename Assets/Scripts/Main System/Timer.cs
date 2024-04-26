@@ -13,15 +13,15 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timerText2;
     public TextMeshProUGUI timerText3;
 
-    public UnityEvent onTenSecondsLeft;
+    public UnityEvent onOneMinuteLeft;
     public UnityEvent onTimeUp;
 
     private bool tenSecondsEventTriggered = false;
 
     void Start()
     {
-        if (onTenSecondsLeft == null)
-            onTenSecondsLeft = new UnityEvent();
+        if (onOneMinuteLeft == null)
+            onOneMinuteLeft = new UnityEvent();
 
         if (onTimeUp == null)
             onTimeUp = new UnityEvent();
@@ -36,9 +36,9 @@ public class Timer : MonoBehaviour
             if (timeRemaining > 0f)
                 timeRemaining -= Time.deltaTime;
 
-            if (timeRemaining <= 10 && !tenSecondsEventTriggered)
+            if (timeRemaining <= 60 && !tenSecondsEventTriggered)
             {
-                onTenSecondsLeft.Invoke();
+                onOneMinuteLeft.Invoke();
                 tenSecondsEventTriggered = true;
             }
 

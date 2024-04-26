@@ -2038,6 +2038,7 @@ MonoBehaviour:
   - {fileID: 812947461}
   - {fileID: 1385688127}
   - {fileID: 1173192317}
+  isCanRetake: 1
   retakeButtons:
   - {fileID: 553010873}
   - {fileID: 193462480}
@@ -15361,9 +15362,21 @@ MonoBehaviour:
   timerText1: {fileID: 1711989747}
   timerText2: {fileID: 1009928054}
   timerText3: {fileID: 1900165680}
-  onTenSecondsLeft:
+  onOneMinuteLeft:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182086598}
+        m_TargetAssemblyTypeName: MainCaptureSystem, Assembly-CSharp
+        m_MethodName: SetCantRetakeAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTimeUp:
     m_PersistentCalls:
       m_Calls: []

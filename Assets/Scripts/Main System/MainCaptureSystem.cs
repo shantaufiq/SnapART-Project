@@ -48,6 +48,7 @@ public class MainCaptureSystem : MonoBehaviour
     private List<Texture2D> capturedImages = new();
     public GameObject prevewPhotoParent;
     public List<PhotoPreview> previewHandlers;
+    public bool isCanRetake = true;
     public List<Button> retakeButtons;
     public List<Image> imagePlacements;
     public GiftController giftController;
@@ -90,6 +91,16 @@ public class MainCaptureSystem : MonoBehaviour
         else videoPlayer.clip = clip;
     }
     #endregion
+
+    public void SetCantRetakeAgain()
+    {
+        foreach (var item in retakeButtons)
+        {
+            item.gameObject.SetActive(false);
+        }
+
+        isCanRetake = false;
+    }
 
     public void OnClickScreenShoot()
     {
@@ -168,34 +179,23 @@ public class MainCaptureSystem : MonoBehaviour
 
             previewHandlers[captureCount].SetPhotoPreview(CreateSpriteFromTexture(currentPhoto));
 
-            for (int i = 0; i < retakeButtons.Count; i++)
+            if (isCanRetake)
             {
-                if (i == captureCount) retakeButtons[i].gameObject.SetActive(true);
-                else retakeButtons[i].gameObject.SetActive(false);
+                for (int i = 0; i < retakeButtons.Count; i++)
+                {
+                    if (i == captureCount) retakeButtons[i].gameObject.SetActive(true);
+                    else retakeButtons[i].gameObject.SetActive(false);
+                }
             }
-
-            // captureCount++;
         }
+
         if (captureCount == 2)
         {
             photoResultBtn.gameObject.SetActive(true);
             shutterBtn.gameObject.SetActive(false);
         }
 
-        if (captureCount >= 3)
-        {
-
-
-
-
-            // PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
-
-
-        }
-        else
-        {
-            UICaptureComponents.SetActive(true);
-        }
+        UICaptureComponents.SetActive(true);
     }
 
     public void SetPhotosResult()
