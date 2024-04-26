@@ -7,6 +7,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.Events;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 public class MainCaptureSystem : MonoBehaviour
 {
@@ -32,8 +34,10 @@ public class MainCaptureSystem : MonoBehaviour
 
     [Space]
     [Header("Main Components")]
+    public Button shutterBtn;
+    public Button photoResultBtn;
     public GameObject UICaptureComponents;
-    public GameObject panelSelectFrame;
+    public GameObject panelPhotoResult;
     public GameObject CapturePanel;
     public float countdownTime = 5f;
     public TextMeshProUGUI countdownText;
@@ -43,7 +47,7 @@ public class MainCaptureSystem : MonoBehaviour
     [Header("Photo Preview")]
     private List<Texture2D> capturedImages = new();
     public GameObject prevewPhotoParent;
-    public List<Image> previewImg;
+    public List<PhotoPreview> previewHandlers;
     public List<Button> retakeButtons;
     public List<Image> imagePlacements;
     public GiftController giftController;
@@ -90,6 +94,8 @@ public class MainCaptureSystem : MonoBehaviour
     public void OnClickScreenShoot()
     {
         StartCoroutine(CountdownToScreenshoot(countdownTime));
+
+        if (previewHandlers[captureCount].isNullImage && captureCount < 2) captureCount++;
     }
 
     IEnumerator CountdownToScreenshoot(float countdownValue)
@@ -159,7 +165,8 @@ public class MainCaptureSystem : MonoBehaviour
             currentPhoto.LoadImage(thisImageBytes);
 
             capturedImages.Add(currentPhoto);
-            previewImg[captureCount].sprite = CreateSpriteFromTexture(capturedImages[captureCount]);
+
+            previewHandlers[captureCount].SetPhotoPreview(CreateSpriteFromTexture(currentPhoto));
 
             for (int i = 0; i < retakeButtons.Count; i++)
             {
@@ -167,41 +174,58 @@ public class MainCaptureSystem : MonoBehaviour
                 else retakeButtons[i].gameObject.SetActive(false);
             }
 
-            captureCount++;
+            // captureCount++;
+        }
+        if (captureCount == 2)
+        {
+            photoResultBtn.gameObject.SetActive(true);
+            shutterBtn.gameObject.SetActive(false);
         }
 
         if (captureCount >= 3)
         {
-            panelSelectFrame.SetActive(true);
 
-            foreach (var item in framePreviewTarget)
-            {
-                item.sprite = framePreviewSource[frameIndex];
-            }
 
-            for (int i = 0; i < capturedImages.Count; i++)
-            {
-                int secondPlacementIndex = i + 3;
 
-                if (imagePlacements[i] != null && imagePlacements.Count > secondPlacementIndex && imagePlacements[secondPlacementIndex] != null)
-                {
-                    imagePlacements[i].sprite = CreateSpriteFromTexture(capturedImages[i]);
-                    imagePlacements[secondPlacementIndex].sprite = CreateSpriteFromTexture(capturedImages[i]);
 
-                    List<Sprite> tempSprites = new();
-                    tempSprites.Add(CreateSpriteFromTexture(capturedImages[i]));
-                    giftController.SetupGift(tempSprites);
-                }
-            }
+            // PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
 
-            PrintHandler.Instance.SetFoto(capturedImages, framePreviewSource[frameIndex]);
 
-            camController.CameraOff();
         }
         else
         {
             UICaptureComponents.SetActive(true);
         }
+    }
+
+    public void SetPhotosResult()
+    {
+        panelPhotoResult.SetActive(true);
+
+        foreach (var item in framePreviewTarget)
+        {
+            item.sprite = framePreviewSource[frameIndex];
+        }
+
+        for (int i = 0; i < previewHandlers.Count; i++)
+        {
+            int secondPlacementIndex = i + 3;
+
+            if (imagePlacements[i] != null && imagePlacements.Count > secondPlacementIndex && imagePlacements[secondPlacementIndex] != null)
+            {
+                imagePlacements[i].sprite = previewHandlers[i].img;
+                imagePlacements[secondPlacementIndex].sprite = previewHandlers[i].img;
+
+                List<Sprite> tempSprites = new();
+                tempSprites.Add(previewHandlers[i].img);
+                giftController.SetupGift(tempSprites);
+            }
+        }
+
+        List<Sprite> imgs = previewHandlers.Where(x => x.img != null).Select(x => x.img).ToList();
+        PrintHandler.Instance.SetFoto(imgs, framePreviewSource[frameIndex]);
+
+        camController.CameraOff();
     }
 
     // for set customer name
@@ -212,35 +236,6 @@ public class MainCaptureSystem : MonoBehaviour
         onUserStartedPhoto.Invoke();
         customerName = tmpInput.text;
         Debug.Log($"Current customer name: {tmpInput.text}");
-    }
-
-    public void RetakePhoto()
-    {
-        // RemoveItemAtIndex(capturedImages, captureCount);
-
-        // capturedImages.RemoveAt(captureCount);
-
-        Debug.Log("dibawah adalah jumlahnya");
-        Debug.Log(capturedImages.Count);
-
-        for (int i = 0; i < previewImg.Count; i++)
-        {
-            if (previewImg[i] != null)
-            {
-                if (i < capturedImages.Count)
-                {
-                    previewImg[i].sprite = CreateSpriteFromTexture(capturedImages[i]);
-                }
-                else
-                {
-                    previewImg[i].sprite = null;
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Image component pada index " + i + " adalah null.");
-            }
-        }
     }
 
     public static void RemoveItemAtIndex<T>(List<T> list, int index)
