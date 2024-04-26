@@ -55,7 +55,7 @@ public class PrintHandler : MonoBehaviour
         TakeScreenshot(1800, 1205);
     }
 
-    public void SetFoto(List<Texture2D> imgResult, Sprite frameSource)
+    public void SetFoto(List<Sprite> imgResult, Sprite frameSource)
     {
         foreach (var item in framesTarget)
         {
@@ -70,8 +70,8 @@ public class PrintHandler : MonoBehaviour
             if (targetImageComponents[i] != null && targetImageComponents.Count > secondPlacementIndex && targetImageComponents[secondPlacementIndex] != null)
             {
                 Sprite newSprite = Sprite.Create(
-                    imgResult[i],
-                    new Rect(0.0f, 0.0f, imgResult[i].width, imgResult[i].height),
+                    imgResult[i].texture,
+                    new Rect(0.0f, 0.0f, imgResult[i].rect.width, imgResult[i].rect.height),
                     new Vector2(0.5f, 0.5f),
                     100.0f);
 
