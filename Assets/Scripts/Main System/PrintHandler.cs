@@ -10,8 +10,9 @@ public class PrintHandler : MonoBehaviour
 
     public Camera myCamera;
     private bool takeScreenshotOnNextFrame;
-
     public List<Image> targetImageComponents;
+
+    public string photoLocation { get; set; }
 
     [Header("Frame Source")]
     public List<Image> framesTarget;
@@ -37,10 +38,12 @@ public class PrintHandler : MonoBehaviour
             File.WriteAllBytes(path, byteArray);
             Debug.Log(path);
 
+            photoLocation = path;
+
             RenderTexture.ReleaseTemporary(renderTexture);
             myCamera.targetTexture = null;
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -79,6 +82,8 @@ public class PrintHandler : MonoBehaviour
                 targetImageComponents[secondPlacementIndex].sprite = newSprite;
             }
         }
+
+        TakeScreenshot_Function();
     }
 
     private void Update()
