@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.Events;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using UnityEngine.SceneManagement;
 
 public class MainCaptureSystem : MonoBehaviour
 {
@@ -264,5 +264,10 @@ public class MainCaptureSystem : MonoBehaviour
             new Rect(0.0f, 0.0f, texture.width, texture.height),
             new Vector2(0.5f, 0.5f),
             100.0f);
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
