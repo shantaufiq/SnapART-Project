@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Net.Mail;
 using TMPro;
 using System.Text.RegularExpressions;
+using System;
 
 public class EmailSender : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class EmailSender : MonoBehaviour
     public string subject;
     [TextArea]
     public string body;
+    [Space]
+    [Header("Components")]
+    public GameObject invalidEmailUI;
+    public GameObject btn_sendEmail;
 
     private bool IsValidEmail(string email)
     {
@@ -34,36 +39,46 @@ public class EmailSender : MonoBehaviour
             return;
         }
 
-        SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-        client.Credentials = new System.Net.NetworkCredential(
-            senderEmail,
-            senderPassword);
-        client.EnableSsl = true;
+        try
+        {
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.Credentials = new System.Net.NetworkCredential(
+                senderEmail,
+                senderPassword);
+            client.EnableSsl = true;
 
-        // Specify the email sender.
-        // Create a mailing address that includes a UTF8 character
-        // in the display name.
-        MailAddress from = new MailAddress(
-            senderEmail,
-            SenderName,
-            System.Text.Encoding.UTF8);
-        // Set destinations for the email message.
-        MailAddress to = new MailAddress(recipientEmail);
+            // Specify the email sender.
+            // Create a mailing address that includes a UTF8 character
+            // in the display name.
+            MailAddress from = new MailAddress(
+                senderEmail,
+                SenderName,
+                System.Text.Encoding.UTF8);
+            // Set destinations for the email message.
+            MailAddress to = new MailAddress(recipientEmail);
 
-        // Specify the message content.
-        MailMessage message = new MailMessage(from, to);
-        message.Subject = subject;
-        message.SubjectEncoding = System.Text.Encoding.UTF8;
-        message.Body = body;
-        message.BodyEncoding = System.Text.Encoding.UTF8;
-        string attachmentPath = $"{PrintHandler.Instance.photoLocation}";
-        Attachment attachment = new Attachment(attachmentPath);
-        message.Attachments.Add(attachment);
+            btn_sendEmail.SetActive(false);
 
-        // Set the method that is called back when the send operation ends.
-        client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
-        string userState = "test message1";
-        client.SendAsync(message, userState);
+            // Specify the message content.
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = subject;
+            message.SubjectEncoding = System.Text.Encoding.UTF8;
+            message.Body = body;
+            message.BodyEncoding = System.Text.Encoding.UTF8;
+            string attachmentPath = $"{PrintHandler.Instance.photoLocation}";
+            Attachment attachment = new Attachment(attachmentPath);
+            message.Attachments.Add(attachment);
+
+            // Set the method that is called back when the send operation ends.
+            client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
+            string userState = "test message1";
+            client.SendAsync(message, userState);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error sending email: " + ex.Message);
+            invalidEmailUI.SetActive(true);
+        }
     }
 
     private void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
